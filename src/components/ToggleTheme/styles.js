@@ -10,7 +10,7 @@ export const ButtonContainer = styled.div`
     border-radius: 3rem;
     padding: .15rem;
 
-    background: var(--DarkBlue);
+    background: var(--VeryDarkBlueBackground);
     cursor: pointer;
 `
 
