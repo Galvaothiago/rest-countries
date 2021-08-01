@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         // Dark elements
         --DarkBlue: hsl(209, 23%, 22%);
+        --DarkBlueHover: hsl(209, 23%, 19%);
         --VeryDarkBlueBackground: hsl(207, 26%, 17%);
 
         // Light mode text
@@ -19,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
         --DarkGray: hsl(0, 0%, 52%);
         --VeryLightGrayBackground: hsl(0, 0%, 98%);
         --White: hsl(0, 0%, 100%);
+        --WhiteHover: hsl(0, 0%, 75%);
     }
 
     html {
