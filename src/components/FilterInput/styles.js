@@ -11,6 +11,10 @@ export const FilterContainer = styled.div`
     background: var(--DarkBlue);
     border-radius: 5px;
 
+    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
+    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
+
     svg {
         font-size: 1.2rem;
         color: var(--White);

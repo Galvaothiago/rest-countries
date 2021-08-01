@@ -12,14 +12,20 @@ export const ButtonContainer = styled.div`
 
     background: var(--VeryDarkBlueBackground);
     cursor: pointer;
-`
+    `
 
 export const Circle = styled.div`
     width: 1.7rem;
     height: 1.7rem;
-
+    
     border-radius: 50%;
-    background: #fff;
+    background: #d4d4d4;
+
+    transition: all .1s;
+
+    &:hover {
+      filter: brightness(.8);
+    }
 `
 
 
