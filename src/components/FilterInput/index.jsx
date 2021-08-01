@@ -3,12 +3,12 @@ import { FilterContainer } from "./styles";
 
 import { MdSearch } from 'react-icons/md'
  
-export function Filter() {
+export function Filter({ getCountry }) {
     const [ input, setInput ] = useState('')
 
     const handleInputSearch = (event) => {
         event.preventDefault()
-        console.log(input)
+        getCountry(input)
         setInput('')
     }
 

@@ -10,6 +10,8 @@ import Scrollbar from "react-scrollbars-custom";
 function App() {
   const [ countries, setCountries ] = useState([])
 
+  const [ error, setError ] = useState(null)
+
   const getAllCountries = async () => {
     try {
       const countries = await api.get('/all')
@@ -28,29 +30,73 @@ function App() {
       }))
 
       setCountries(dataFormated)
+      setError(null)
     } catch (error) {
-      alert('Ops, something went wrong', error.message)
+      setError({
+        message: `Ops, something went wrong!`,
+        message_error: error.message
+      })
     }
   }
+
+  const getCountryByName = async (NameCountry) => {
+    try {
+      const country = await api.get(`/name/${String(NameCountry)}`)
+
+      const dataFormated = country.data.map(country => ({
+        name: country.name,
+        capital: country.capital,
+        nativeName: country.nativeName,
+        population: new Intl.NumberFormat().format(country.population),
+        region: country.region,
+        countriesBorders: country.borders,
+        subRegion: country.subregion,
+        currencies: country.currencies,
+        languages: country.languages,
+        flag: country.flag,
+      }))
+
+      setCountries(dataFormated)
+      setError(null)
+    } catch (error) {
+      setError({
+        message: `Ops, we can't find the country with this name, try again.`,
+        message_error: error.message
+      })
+
+      console.log(error)
+    }
+  }
+
 
   useEffect(() => {
     getAllCountries()
   }, [])
 
-  // countries.map(country => console.log(country))
   return (
     <>
       <Header />
       <Dashboard>
         <SearchContainer>
-          <Filter />
+          <Filter getCountry={getCountryByName} />
           <Select />
         </SearchContainer>
         <GridContainer>
           <Scrollbar  style={ { width: '100%', height: '95%'} }>
-            <Grid>
-              { countries?.map(country => (
-              <CountryCard>
+            { error ? (
+              <GridError>
+                <div>
+                  <div>
+                    <p>{error?.message}</p>
+                    <img src="/sad.png" alt="Page not found" /> 
+                  </div>
+                  <span>{error?.message_error}</span>
+                </div>
+              </GridError>
+            ) : (
+              <Grid>
+              { countries?.map((country, index) => (
+              <CountryCard key={`${index}-${country.name}`}>
                 <img src={country.flag} alt={country.name} />
                 <div>
                   <h2>{country.name}</h2>
@@ -63,6 +109,7 @@ function App() {
               </CountryCard>
             )) }
             </Grid>
+            ) }
           </Scrollbar>
         </GridContainer>
       </Dashboard>
@@ -111,6 +158,71 @@ const Grid = styled.div`
   
   height: auto;
   padding-top: 1rem;
+`
+
+const GridError = styled.div`
+  width: 100%;
+  height: 350px;
+  margin-top: 2rem;
+
+  display: grid;
+  place-items: center;
+
+  > div {
+    max-width: 45rem;
+    width: 100%;
+    height: 19rem;
+    padding: 2rem;
+
+    display: flex;
+
+    background: var(--DarkBlue);
+    border-radius: 10px;
+
+    div {
+      flex: .7;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-evenly;
+      align-items: center;
+
+      p {
+  
+        text-align: center;
+        color: var(--WhiteHover);
+        font-weight: 500;
+        font-size: 2rem;
+        font-family: 'Rajdhani', sans-serif;
+      }
+
+      i {
+        font-size: 3rem;
+      }
+    }
+
+    span {
+      flex: .3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding-left: 1rem;
+
+      border-left: 1px solid var(--WhiteHover);
+
+      text-align: center;
+      color: var(--White);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 100;
+      font-size: 1.5rem;
+
+      /* background: green; */
+    }
+  }
+
 `
 
 const CountryCard = styled.div`
