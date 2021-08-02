@@ -8,7 +8,7 @@ export const FilterContainer = styled.div`
     display: flex;
     align-items: center;
 
-    background: var(--DarkBlue);
+    background: ${({ theme }) => theme.background};
     border-radius: 5px;
 
     -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
@@ -17,7 +17,7 @@ export const FilterContainer = styled.div`
 
     svg {
         font-size: 1.2rem;
-        color: var(--White);
+        color: ${({ theme }) => theme.text};
         cursor: pointer;
     }
 
@@ -27,13 +27,13 @@ export const FilterContainer = styled.div`
         input {       
             margin-left: 1rem;
             height: 2rem;
-            color: var(--White);
+            color: ${({ theme }) => theme.text};
             background: none;
             border: 0;
             outline: transparent;
             
             &::placeholder {
-                color: var(--White);
+                color: ${({ theme }) => theme.textInput};
     
             }
         }

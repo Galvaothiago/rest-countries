@@ -1,11 +1,11 @@
 import { ToggleTheme } from '../ToggleTheme'
 import { HeaderContainer } from './styles'
 
-export function Header() {
+export function Header({ onRequest, toggle }) {
     return (
         <HeaderContainer>
-            <p>Where in the world?</p>
-            <ToggleTheme />
+            <p onClick={() => onRequest()}>Where in the world?</p>
+            <ToggleTheme onToggle={toggle} />
         </HeaderContainer>
     )
 }

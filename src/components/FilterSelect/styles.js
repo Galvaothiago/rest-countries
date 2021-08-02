@@ -9,7 +9,7 @@ export const FilterSelectContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    background: var(--DarkBlue);
+    background: ${({ theme }) => theme.background};
     border-radius: 5px;
 
     position: relative;
@@ -19,13 +19,13 @@ export const FilterSelectContainer = styled.div`
     box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
 
     p {
-        color: var(--White);
+        color: ${({ theme }) => theme.text};
         font-size: .88rem;
     }
 
     svg {
         font-size: 1.2rem;
-        color: var(--White);
+        color: ${({ theme }) => theme.text};
         cursor: pointer;
     }
 
@@ -40,7 +40,7 @@ export const OptionListRegion = styled.ul`
     top: 9.5rem;
     right: 4rem;
 
-    background: var(--DarkBlue);
+    background: ${({ theme }) => theme.background};
     border-radius: 5px;
     z-index: 1;
 
@@ -49,15 +49,15 @@ export const OptionListRegion = styled.ul`
         padding: .3rem 1rem;
         
         text-align: left;
-        color: var(--White);
+        color: ${({ theme }) => theme.text};
         border-bottom: 1px solid var(--VeryDarkBlueBackground);
 
         cursor: pointer;
         transition: all .2s;
 
         &:hover {
-            background: var(--DarkBlueHover);
-            color: var(--WhiteHover);
+            background: ${({ theme }) => theme.background3};
+            color: ${({ theme }) => theme.textInput};
         }
     }
 `

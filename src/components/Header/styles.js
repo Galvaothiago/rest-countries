@@ -9,16 +9,17 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
 
     height: 4rem;
-    background: var(--DarkBlue);
-    color: var(--White);
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
 
     position: sticky;
 
-    -webkit-box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
+    box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
     
     p {
         font-weight: 700;
+        cursor: pointer;
     }
 `

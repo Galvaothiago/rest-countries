@@ -3,11 +3,12 @@ import { ButtonContainer, Circle, IconMoon, IconSun } from "./styles";
 import { BsMoon } from 'react-icons/bs'
 import { FiSun } from 'react-icons/fi'
 
-export function ToggleTheme() {
-    const [ showIconDarkMode, setShowIconDarkMode ] = useState(false)
+export function ToggleTheme({ onToggle }) {
+    const [ showIconDarkMode, setShowIconDarkMode ] = useState(true)
 
     const handleChangeDarkMode = () => {
         setShowIconDarkMode(state => !state)
+        onToggle(state => !state)
     }
 
     return (
