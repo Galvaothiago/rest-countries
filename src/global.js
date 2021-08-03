@@ -23,6 +23,12 @@ export const GlobalStyle = createGlobalStyle`
         --WhiteHover: hsl(0, 0%, 75%);
     }
 
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-y: hidden;
+}
+
     html {
         @media(max-width: 1080px) {
             font-size: 93.75%;

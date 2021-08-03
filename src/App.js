@@ -10,12 +10,14 @@ import Scrollbar from "react-scrollbars-custom";
 import { Error } from "./components/ErrorRequest";
 
 import { lightTheme, darkTheme } from '../src/styleTheme/theme'
+import { useLocalStorage } from '../src/utils/useLocalStorage'
 
 function App() {
   const [ countries, setCountries ] = useState([])
   const [ error, setError ] = useState(null)
 
-  const [ isLightTheme, setIsLightTheme ] = useState(false)
+  // const [ isDarkTheme, setIsDarkTheme ] = useState(true)
+  const [ isDarkTheme, setIsDarkTheme ] = useLocalStorage('isDarkTheme', true)
 
   const getAllCountries = async () => {
     try {
@@ -99,14 +101,25 @@ function App() {
     }
   }
 
+  const handleChangeTheme = () => {
+    setIsDarkTheme(oldState => !oldState)
+  }
+
   useEffect(() => {
     getAllCountries()
+
+    if(isDarkTheme === undefined) {
+      console.log('isDarkTheme undefide')
+      setIsDarkTheme(true)
+      return
+    }
+    setIsDarkTheme(isDarkTheme)
   }, [])
 
   return (
     <>
-    <ThemeProvider theme={ isLightTheme ? lightTheme : darkTheme }>
-      <Header toggle={setIsLightTheme} onRequest={getAllCountries}/>
+    <ThemeProvider theme={ isDarkTheme ? darkTheme : lightTheme }>
+      <Header toggle={handleChangeTheme} onRequest={getAllCountries}/>
       <Dashboard>
         <SearchContainer>
           <Filter getCountry={getCountryByName} />

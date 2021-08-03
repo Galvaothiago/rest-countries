@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ButtonContainer, Circle, IconMoon, IconSun } from "./styles";
 import { BsMoon } from 'react-icons/bs'
 import { FiSun } from 'react-icons/fi'
+import { useLocalStorage } from '../../utils/useLocalStorage';
 
 export function ToggleTheme({ onToggle }) {
     const [ showIconDarkMode, setShowIconDarkMode ] = useState(true)
+    const [ isDarkTheme ] = useLocalStorage('isDarkTheme', true)
 
     const handleChangeDarkMode = () => {
-        setShowIconDarkMode(state => !state)
-        onToggle(state => !state)
+      onToggle()
+      setShowIconDarkMode(oldState => !oldState)
     }
+
+    useEffect(() => {
+      if(isDarkTheme === undefined) {
+        setShowIconDarkMode(true)
+        return
+      }
+      setShowIconDarkMode(isDarkTheme)
+    }, [])
 
     return (
         <ButtonContainer>
