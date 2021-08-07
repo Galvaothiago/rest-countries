@@ -1,8 +1,8 @@
 import { GridError } from './styles'
 
 export function Error({ onError }) {
-    const codeError = onError?.message_error.split('code')[1]
-    console.log(codeError)
+    const codeError = onError?.message_error?.split('code')[1]
+    
     return (
         <GridError>
         <div>
