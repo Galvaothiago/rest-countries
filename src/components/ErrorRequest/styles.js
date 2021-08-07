@@ -20,8 +20,8 @@ export const GridError = styled.div`
     border-radius: 10px;
 
     -webkit-box-shadow:${({ theme }) => theme.shadow && '0px 2px 7px 1px rgba(0,0,0,0.18)'};
-  -moz-box-shadow:${({ theme }) => theme.shadow && '0px 2px 7px 1px rgba(0,0,0,0.18)'};
-  box-shadow:${({ theme }) => theme.shadow && '0px 2px 7px 1px rgba(0,0,0,0.18)'};
+    -moz-box-shadow:${({ theme }) => theme.shadow && '0px 2px 7px 1px rgba(0,0,0,0.18)'};
+    box-shadow:${({ theme }) => theme.shadow && '0px 2px 7px 1px rgba(0,0,0,0.18)'};
 
     div {
         flex: .75;
