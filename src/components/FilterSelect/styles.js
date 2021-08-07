@@ -14,9 +14,9 @@ export const FilterSelectContainer = styled.div`
 
     position: relative;
 
-    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
-    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
-    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
+    box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
 
     p {
         color: ${({ theme }) => theme.text};

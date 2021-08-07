@@ -11,9 +11,9 @@ export const FilterContainer = styled.div`
     background: ${({ theme }) => theme.background};
     border-radius: 5px;
 
-    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
-    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
-    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
+    box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.18);
 
     svg {
         font-size: 1.2rem;
@@ -22,13 +22,15 @@ export const FilterContainer = styled.div`
     }
 
     form {
-        width: 70%;
+        width: 22rem;
         
-        input {       
-            margin-left: 1rem;
+        input { 
+            width: 100%;
             height: 2rem;
-            color: ${({ theme }) => theme.text};
+            margin-left: 1rem;
+            
             background: none;
+            color: ${({ theme }) => theme.text};
             border: 0;
             outline: transparent;
             
@@ -36,11 +38,6 @@ export const FilterContainer = styled.div`
                 color: ${({ theme }) => theme.textInput};
     
             }
-        }
-
-        button {
-            margin-left: 1rem;
-            display: none;
         }
     }
 `

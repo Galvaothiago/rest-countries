@@ -15,9 +15,8 @@ export function Filter({ getCountry }) {
     return (
         <FilterContainer>
             <MdSearch />
-            <form>
+            <form onSubmit={ e => handleInputSearch(e)}>
                 <input type="text" onChange={e => setInput(e.target.value)}  value={input} placeholder="Search for a country..." />
-                <button onClick={ e => handleInputSearch(e) }/>
             </form>
         </FilterContainer>
     )
