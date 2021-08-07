@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ThemeProvider } from 'styled-components'
 
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+
 import { Header } from "./components/Header";
 import styled from 'styled-components'
 import { Filter } from "./components/FilterInput";
@@ -11,12 +13,13 @@ import { Error } from "./components/ErrorRequest";
 
 import { lightTheme, darkTheme } from '../src/styleTheme/theme'
 import { useLocalStorage } from '../src/utils/useLocalStorage'
+import { CountryInfo } from "./components/CountryInfo";
+import { BackButton } from "./components/BackButton";
 
 function App() {
   const [ countries, setCountries ] = useState([])
   const [ error, setError ] = useState(null)
 
-  // const [ isDarkTheme, setIsDarkTheme ] = useState(true)
   const [ isDarkTheme, setIsDarkTheme ] = useLocalStorage('isDarkTheme', true)
 
   const getAllCountries = async () => {
@@ -63,8 +66,10 @@ function App() {
         flag: country.flag,
       }))
 
+      console.log(country)
       setCountries(dataFormated)
       setError(null)
+      console.log('clicked to get only one country')
     } catch (error) {
       setError({
         message: `Ops, we can't find the country with this name, try again.`,
@@ -107,50 +112,58 @@ function App() {
 
   useEffect(() => {
     getAllCountries()
-
-    if(isDarkTheme === undefined) {
-      console.log('isDarkTheme undefide')
-      setIsDarkTheme(true)
-      return
-    }
+    
     setIsDarkTheme(isDarkTheme)
   }, [])
 
   return (
     <>
+    <Router>
     <ThemeProvider theme={ isDarkTheme ? darkTheme : lightTheme }>
       <Header toggle={handleChangeTheme} onRequest={getAllCountries}/>
-      <Dashboard>
-        <SearchContainer>
-          <Filter getCountry={getCountryByName} />
-          <Select onRequest={getCountryByRegion}/>
-        </SearchContainer>
-        <GridContainer>
-          <Scrollbar  style={ { width: '100%', height: '95%'} }>
-            { error ? (
-              <Error onError={error} />
-            ) : (
-              <Grid>
-              { countries?.map((country, index) => (
-              <CountryCard key={`${index}-${country.name}`}>
-                <img src={country.flag} alt={country.name} />
-                <div>
-                  <h2>{country.name}</h2>
-                  <span>
-                    <p>Population: {country.population}</p>
-                    <p>Region: {country.region}</p>
-                    <p>Capital: {country.capital}</p>
-                  </span>
-                </div>
-              </CountryCard>
-            )) }
-            </Grid>
-            ) }
-          </Scrollbar>
-        </GridContainer>
-      </Dashboard>
-
+      <Switch>
+        <Route path="/country/:countryName">
+          <Dashboard>
+            <BackButton />
+            <CountryInfo />
+          </Dashboard>
+        </Route>
+        <Route path="/">
+          <Dashboard>
+            <SearchContainer>
+              <Filter getCountry={getCountryByName} />
+              <Select onRequest={getCountryByRegion}/>
+            </SearchContainer>
+            <GridContainer>
+              <Scrollbar  style={ { width: '100%', height: '95%'} }>
+                { error ? (
+                  <Error onError={error} />
+                ) : (
+                  <Grid>
+                  { countries?.map((country, index) => (
+                    <Link to={`/country/${country.name}`}>
+                  <CountryCard key={`${index}-${country.name}`}>
+                    <img src={country.flag} alt={country.name} />
+                    <div>
+                      <h2>{country.name}</h2>
+                      <span>
+                        <p>Population: {country.population}</p>
+                        <p>Region: {country.region}</p>
+                        <p>Capital: {country.capital}</p>
+                      </span>
+                    </div>
+                  </CountryCard>
+                  </Link>
+                )) }
+                </Grid>
+                ) }
+              </Scrollbar>
+            </GridContainer>
+          </Dashboard>
+        </Route>
+      </Switch>
     </ThemeProvider>
+    </Router>
     </>
   );
 }
