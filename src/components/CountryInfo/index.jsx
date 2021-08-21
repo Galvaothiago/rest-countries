@@ -4,10 +4,12 @@ import { api } from '../../services/api'
 import { Error } from '../ErrorRequest'
 import { Link } from 'react-router-dom'
 import { ContainerCountryInfo } from './styles'
+import { Loading } from '../Loading'
 
 export function CountryInfo() {
     const [ country, setCountry] = useState([])
     const [ error, setError ] = useState({})
+    const [ isLoading, setIsLoading ] = useState(true)
 
     const { countryName } = useParams()
 
@@ -30,6 +32,10 @@ export function CountryInfo() {
             }))
     
             setCountry(dataFormated)
+
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 200)
             setError(null)
         } catch (error) {
           setError({
@@ -41,6 +47,7 @@ export function CountryInfo() {
 
     const getCountryByCode = async (codeCountry) => {
         try {
+            setIsLoading(true)
             const country = await api.get(`/alpha/${String(codeCountry)}`)
 
             const dataFormated = [country.data].map(country => ({
@@ -58,6 +65,11 @@ export function CountryInfo() {
             }))
 
             setCountry(dataFormated)
+
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 200)
+            
             setError(null)
             
         } catch (error) {
@@ -75,7 +87,9 @@ export function CountryInfo() {
 
     }, [])
 
-    return !error ? (
+    return isLoading ? (
+        <Loading />
+    ) : (
         <ContainerCountryInfo>
             <img src={country[0].flag} alt={country[0].name} />
             <div>
@@ -108,7 +122,5 @@ export function CountryInfo() {
                 </footer>
             </div>
         </ContainerCountryInfo>
-    ) : (
-        <Error onError={error}/>
-    )
+    ) 
 }

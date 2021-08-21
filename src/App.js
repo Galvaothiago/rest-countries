@@ -15,10 +15,12 @@ import { lightTheme, darkTheme } from '../src/styleTheme/theme'
 import { useLocalStorage } from '../src/utils/useLocalStorage'
 import { CountryInfo } from "./components/CountryInfo";
 import { BackButton } from "./components/BackButton";
+import { Loading } from "./components/Loading";
 
 function App() {
   const [ countries, setCountries ] = useState([])
   const [ error, setError ] = useState(null)
+
 
   const [ isDarkTheme, setIsDarkTheme ] = useLocalStorage('isDarkTheme', true)
 
@@ -65,11 +67,11 @@ function App() {
         languages: country.languages,
         flag: country.flag,
       }))
+      console.log(dataFormated)
 
-      console.log(country)
       setCountries(dataFormated)
       setError(null)
-      console.log('clicked to get only one country')
+
     } catch (error) {
       setError({
         message: `Ops, we can't find the country with this name, try again.`,
@@ -112,7 +114,7 @@ function App() {
 
   useEffect(() => {
     getAllCountries()
-    
+
     setIsDarkTheme(isDarkTheme)
   }, [])
 
@@ -137,7 +139,7 @@ function App() {
             <GridContainer>
               <Scrollbar  style={ { width: '100%', height: '95%'} }>
                 { error ? (
-                  <Error onError={error} />
+                  <Error onError={error}/>
                 ) : (
                   <Grid>
                   { countries?.map((country, index) => (
