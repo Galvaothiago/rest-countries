@@ -29,6 +29,11 @@ export const FilterSelectContainer = styled.div`
         cursor: pointer;
     }
 
+    @media(max-width: 600px) {
+        width: 16rem;
+        height: 3rem;
+    }
+
 `
 
 export const OptionListRegion = styled.ul`
@@ -37,7 +42,7 @@ export const OptionListRegion = styled.ul`
     margin-top: .2rem;
 
     position: absolute;
-    top: 9.5rem;
+    top: 9.3rem;
     right: 4rem;
 
     background: ${({ theme }) => theme.background};
@@ -59,5 +64,14 @@ export const OptionListRegion = styled.ul`
             background: ${({ theme }) => theme.background3};
             color: ${({ theme }) => theme.textInput};
         }
+    }
+
+    @media(max-width: 600px) {
+        width: 16rem;
+        height: auto;
+
+        position: absolute;
+        top: 13rem;
+        right: auto;
     }
 `

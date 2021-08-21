@@ -178,7 +178,11 @@ const Dashboard = styled.main`
 
   min-height: calc(100vh - 4rem);
   height: auto;
-  background: ${({ theme }) => theme.background2};;
+  background: ${({ theme }) => theme.background2};
+
+  @media(max-width: 600px) {
+    padding: 1.5rem 1.5rem;
+  }
 
 `
 
@@ -193,12 +197,20 @@ const GridContainer = styled.div`
     width: 100%;
     height: 100%;
   }
+
 `
 
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 `
 
 const Grid = styled.div`
@@ -211,6 +223,12 @@ const Grid = styled.div`
   
   height: auto;
   padding: 1rem .5rem .5rem .5rem;
+
+  @media(max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `
 
 const CountryCard = styled.div`
@@ -260,6 +278,27 @@ const CountryCard = styled.div`
       }
 
     }
+  }
+
+  @media(max-width: 600px) {
+    width: 20rem;
+    min-height: 25rem;
+    height: auto;
+
+    img {
+      flex: .4;
+      width: 100%;
+      max-height: 12.5rem;
+      border-radius: 5px 5px 0 0;
+    }
+
+    div {
+
+      h2 {
+        font-size: 1.1rem;
+      }
+    }
+
   }
 `
 

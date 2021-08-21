@@ -99,4 +99,32 @@ export const ContainerCountryInfo = styled.div`
 
         }
     }
+
+    @media(max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+
+        > div {
+            width: 100%;
+            min-height: 370px;
+            height: 100%;
+
+            section {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                margin-top: 1rem;
+                gap: 2rem;
+            }
+
+            footer {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .5rem;
+
+                margin-top: 1rem;
+            }
+        }
+    }
 `

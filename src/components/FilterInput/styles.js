@@ -40,4 +40,16 @@ export const FilterContainer = styled.div`
             }
         }
     }
+
+    @media(max-width: 600px) {
+        max-width: 40rem;
+        width: 100%;
+        height: 3.1rem;
+
+        form {
+            width: 38rem;
+        }
+    }
+
+
 `

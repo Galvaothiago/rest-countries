@@ -22,4 +22,8 @@ export const HeaderContainer = styled.header`
         font-weight: 700;
         cursor: pointer;
     }
+
+    @media(max-width: 600px) {
+        padding: 0 1.5rem;
+    }
 `
