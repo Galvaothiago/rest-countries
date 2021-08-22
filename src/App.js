@@ -253,7 +253,7 @@ const CountryCard = styled.div`
     border-radius: 5px 5px 0 0;
   }
 
-  div {
+  > div {
     flex: .6;
     width: 100%;
 
@@ -264,7 +264,7 @@ const CountryCard = styled.div`
       color: ${({ theme }) => theme.text};
     }
 
-    > div {
+     div {
       display: block;
       margin-top: 1rem;
       font-size: .88rem;
