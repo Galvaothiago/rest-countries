@@ -15,7 +15,6 @@ import { lightTheme, darkTheme } from '../src/styleTheme/theme'
 import { useLocalStorage } from '../src/utils/useLocalStorage'
 import { CountryInfo } from "./components/CountryInfo";
 import { BackButton } from "./components/BackButton";
-import { Loading } from "./components/Loading";
 
 function App() {
   const [ countries, setCountries ] = useState([])
@@ -144,20 +143,20 @@ function App() {
                   <Grid>
                   { countries?.map((country, index) => (
                     <Link to={`/country/${country.name}`}>
-                  <CountryCard key={`${index}-${country.name}`}>
-                    <img src={country.flag} alt={country.name} />
-                    <div>
-                      <h2>{country.name}</h2>
-                      <span>
-                        <p>Population: {country.population}</p>
-                        <p>Region: {country.region}</p>
-                        <p>Capital: {country.capital}</p>
-                      </span>
-                    </div>
-                  </CountryCard>
-                  </Link>
-                )) }
-                </Grid>
+                      <CountryCard key={`${index}-${country.name}`}>
+                        <img src={country.flag} alt={country.name} />
+                        <div>
+                          <h2>{country.name}</h2>
+                          <div>
+                            <p>Population: {country.population}</p>
+                            <p>Region: {country.region}</p>
+                            <p>Capital: {country.capital}</p>
+                          </div>
+                        </div>
+                      </CountryCard>
+                    </Link>
+                  ))}
+                  </Grid>
                 ) }
               </Scrollbar>
             </GridContainer>
@@ -265,7 +264,7 @@ const CountryCard = styled.div`
       color: ${({ theme }) => theme.text};
     }
 
-    span {
+    > div {
       display: block;
       margin-top: 1rem;
       font-size: .88rem;
